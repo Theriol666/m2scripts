@@ -123,12 +123,12 @@
             }
         },
         isReady(successCallBack) {
-            jq(document).ready(function(){
+            jQuery(document).ready(function(){
                 successCallBack();
             });
         },
         addStyle() {
-            jq('head').append(`<style type="text/css"></style>`);
+            jQuery('head').append(`<style type="text/css"></style>`);
         }
     };
 })(window);
