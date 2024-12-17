@@ -125,8 +125,8 @@
                     window.M2Scripts = true;
                 }
             },
-            isReady(successCallBack) {
-                jQuery(document).ready(function(){
+            async isReady(successCallBack) {
+                await jQuery(document).ready(function(){
                     successCallBack();
                 });
             },
