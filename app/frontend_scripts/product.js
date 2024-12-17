@@ -22,8 +22,8 @@
     'use strict';
 
     function getProductUrl(event) {
-        const urlStoreView = document.M2Scripts.getCurrentStoreViewUrlCode(),
-              apiStoreCode = document.M2Scripts.getApiStoreCode(),
+        const urlStoreView = window.M2Scripts.getCurrentStoreViewUrlCode(),
+              apiStoreCode = window.M2Scripts.getApiStoreCode(),
               sku = event.target.className !== 'm2scripts-getProductUrlName',
               condition = sku ? "eq" : "like",
               value = prompt("Find product by " + (sku ? "sku" : "name") + " :"),
@@ -41,12 +41,12 @@
             .replace("{%value%}", value)
             .replace("{%condition%}", condition);
 
-        const productData = document.M2Scripts.makeApiCall(endpoint);
+        const productData = window.M2Scripts.makeApiCall(endpoint);
         let productUrl = null;
         if (productData !== null && productData.items !== null) {
             for (let attr in productData.items[0].custom_attributes) {
                 if (productData.items[0].custom_attributes[attr].attribute_code === "url_key") {
-                    productUrl = document.M2Scripts.getCurrentBaseUrl() + (urlStoreView !== "" ? "/" + urlStoreView : "") + "/" + productData.items[0].custom_attributes[attr].value + document.M2Scripts.productPageSuffix;
+                    productUrl = window.M2Scripts.getCurrentBaseUrl() + (urlStoreView !== "" ? "/" + urlStoreView : "") + "/" + productData.items[0].custom_attributes[attr].value + window.M2Scripts.productPageSuffix;
                     alert (productUrl);
                 }
             }
@@ -68,9 +68,9 @@
             console.log("Error: no container for M2 Scripts");
         }
 
-        document.M2Scripts.addButtonToMainContainer("Get Product Url by SKU", getProductUrl ,"getProductUrl");
-        document.M2Scripts.addButtonToMainContainer("Get Product Url by Name", getProductUrl ,"getProductUrlName");
-        document.M2Scripts.addButtonToMainContainer("Go To Product Page", gotoProductPage ,"gotoProductPage");
+        window.M2Scripts.addButtonToMainContainer("Get Product Url by SKU", getProductUrl ,"getProductUrl");
+        window.M2Scripts.addButtonToMainContainer("Get Product Url by Name", getProductUrl ,"getProductUrlName");
+        window.M2Scripts.addButtonToMainContainer("Go To Product Page", gotoProductPage ,"gotoProductPage");
     }
 
     function start(){

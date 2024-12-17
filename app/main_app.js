@@ -119,7 +119,7 @@
                 container.style.zIndex = "9999999";
                 document.querySelector("body").appendChild(container);
     
-                document.m2scripts = true;
+                window.M2Scripts = true;
             }
         },
         isReady(successCallBack) {

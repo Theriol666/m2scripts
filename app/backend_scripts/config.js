@@ -153,10 +153,10 @@
             console.log("Error: no container for M2 Scripts");
         }
 
-        document.M2Scripts.addButtonToMainContainer("Show Config Path", showConfigPath ,"showConfigPath");
-        document.M2Scripts.addButtonToMainContainer("Get Values From Select", getSelectProprieties ,"getSelectValues");
-        document.M2Scripts.addButtonToMainContainer("Get Options From Select", getSelectProprieties ,"getSelectOptions");
-        document.M2Scripts.addButtonToMainContainer("Toggle Values To Select", toggleValuesToSelect ,"toggleValuesToSelect");
+        window.M2Scripts.addButtonToMainContainer("Show Config Path", showConfigPath ,"showConfigPath");
+        window.M2Scripts.addButtonToMainContainer("Get Values From Select", getSelectProprieties ,"getSelectValues");
+        window.M2Scripts.addButtonToMainContainer("Get Options From Select", getSelectProprieties ,"getSelectOptions");
+        window.M2Scripts.addButtonToMainContainer("Toggle Values To Select", toggleValuesToSelect ,"toggleValuesToSelect");
     }
 
     function start(){

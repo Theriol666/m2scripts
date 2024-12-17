@@ -46,7 +46,7 @@
             console.log("Error: no container for M2 Scripts");
         }
 
-        document.M2Scripts.addButtonToMainContainer("Show values", showStoresValue ,"showStoresValue");
+        window.M2Scripts.addButtonToMainContainer("Show values", showStoresValue ,"showStoresValue");
     }
 
     function start(){

@@ -22,7 +22,7 @@
     'use strict';
 
     function getCartInfo() {
-        if (typeof document.m2scripts !== undefined) {
+        if (typeof window.M2Scripts !== undefined) {
             alert(JSON.stringify(require('Magento_Customer/js/customer-data').get('cart')(), null, 2));
         } else {
             alert("Require JS not loaded yet");
@@ -35,7 +35,7 @@
             console.log("Error: no container for M2 Scripts");
         }
 
-        document.M2Scripts.addButtonToMainContainer("Get Cart Info", getCartInfo ,"getCartInfo");
+        window.M2Scripts.addButtonToMainContainer("Get Cart Info", getCartInfo ,"getCartInfo");
     }
 
     function start(){

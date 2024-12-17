@@ -23,8 +23,8 @@
           orderId = window.location.pathname.match(regex)[1];
 
     function getOrderInformation() {
-        if (typeof document.m2scripts !== undefined) {
-            alert(JSON.stringify(document.M2Scripts.makeApiCall('/rest/all/V1/orders/' + orderId), null, 2));
+        if (typeof window.M2Scripts !== undefined) {
+            alert(JSON.stringify(window.M2Scripts.makeApiCall('/rest/all/V1/orders/' + orderId), null, 2));
         } else {
             alert("Require JS not loaded yet");
         }
@@ -36,7 +36,7 @@
             console.log("Error: no container for M2 Scripts");
         }
 
-        document.M2Scripts.addButtonToMainContainer("Get Order Information", getOrderInformation ,"getOrderInformation");
+        window.M2Scripts.addButtonToMainContainer("Get Order Information", getOrderInformation ,"getOrderInformation");
     }
 
     function start(){

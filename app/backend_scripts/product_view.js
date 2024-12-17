@@ -22,8 +22,8 @@
 
     function getProductInformation() {
         let sku = jQuery('input[name="product[sku]"]').val();
-        if (typeof document.m2scripts !== undefined && sku) {
-            alert(JSON.stringify(document.M2Scripts.makeApiCall('/rest/all/V1/products/' + sku), null, 2));
+        if (typeof window.M2Scripts !== undefined && sku) {
+            alert(JSON.stringify(window.M2Scripts.makeApiCall('/rest/all/V1/products/' + sku), null, 2));
         } else {
             alert("Require JS not loaded yet");
         }
@@ -35,7 +35,7 @@
             console.log("Error: no container for M2 Scripts");
         }
 
-        document.M2Scripts.addButtonToMainContainer("Get Product Information", getProductInformation ,"getProductInformation");
+        window.M2Scripts.addButtonToMainContainer("Get Product Information", getProductInformation ,"getProductInformation");
     }
 
     function start(){

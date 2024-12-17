@@ -163,8 +163,8 @@
             console.log("Error: no container for M2 Scripts");
         }
 
-        document.M2Scripts.addButtonToMainContainer("Toggle empty columns", toggleEmptyOptionsColumn ,"toggleEmptyOptionsColumn");
-        document.M2Scripts.addButtonToMainContainer("Import options as CSV", createImportForm ,"createImportForm");
+        window.M2Scripts.addButtonToMainContainer("Toggle empty columns", toggleEmptyOptionsColumn ,"toggleEmptyOptionsColumn");
+        window.M2Scripts.addButtonToMainContainer("Import options as CSV", createImportForm ,"createImportForm");
     }
 
     function start(){

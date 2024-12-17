@@ -97,9 +97,9 @@
             console.log("Error: no container for M2 Scripts");
         }
 
-        document.M2Scripts.addButtonToMainContainer("Get SKUs From List", getSku ,"getSku");
-        document.M2Scripts.addButtonToMainContainer("Get SKUs with no Thumb", getNoImage ,"getNoImage");
-        document.M2Scripts.addButtonToMainContainer("Get Url Key", getUrlKey ,"getUrlKey");
+        window.M2Scripts.addButtonToMainContainer("Get SKUs From List", getSku ,"getSku");
+        window.M2Scripts.addButtonToMainContainer("Get SKUs with no Thumb", getNoImage ,"getNoImage");
+        window.M2Scripts.addButtonToMainContainer("Get Url Key", getUrlKey ,"getUrlKey");
     }
 
     function start(){
