@@ -8,7 +8,7 @@
 // @icon         https://www.shareicon.net/download/2016/07/10/119934_magento.ico
 // @supportURL   https://github.com/Theriol666/m2scripts
 // @updateURL    https://github.com/Theriol666/m2scripts/raw/main/app/backend_script/store_list.js
-// @updateURL    https://github.com/Theriol666/m2scripts/raw/main/app/backend_script/store_list.js
+// @downloadURL  https://github.com/Theriol666/m2scripts/raw/main/app/backend_script/store_list.js
 // @require      https://github.com/Theriol666/m2scripts/raw/main/app/backend_app.js
 // @grant        GM_getValue
 // @grant        GM_setValue

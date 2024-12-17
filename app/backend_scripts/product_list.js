@@ -7,7 +7,7 @@
 // @match        *://*/*catalog/product/index*/*
 // @supportURL   https://github.com/Theriol666/m2scripts
 // @updateURL    https://github.com/Theriol666/m2scripts/raw/main/app/backend_script/product_list.js
-// @updateURL    https://github.com/Theriol666/m2scripts/raw/main/app/backend_script/product_list.js
+// @downloadURL  https://github.com/Theriol666/m2scripts/raw/main/app/backend_script/product_list.js
 // @require      https://github.com/Theriol666/m2scripts/raw/main/app/backend_app.js
 // @grant        GM_getValue
 // @grant        GM_setValue
