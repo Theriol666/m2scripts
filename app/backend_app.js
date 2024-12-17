@@ -19,8 +19,8 @@
 
 (function () {
     'use strict';
-    M2Scripts.isReady(function () {
-        M2Scripts.addStyle();
-        M2Scripts.addMainContainer();
+    window.M2Scripts.isReady(function () {
+        window.M2Scripts.addStyle();
+        window.M2Scripts.addMainContainer();
     });
 })();

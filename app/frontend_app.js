@@ -21,21 +21,21 @@
     'use strict';
 
     // add new method to M2Scripts object
-    M2Scripts.init = function() {
+    window.M2Scripts.init = function() {
         this.apiSiteBaseUrl = localStorage.getItem("m2script_api_base_url") ?? localStorage.setItem("m2script_api_base_url", prompt("Set Api Base Url"));
         this.productPageSuffix = localStorage.getItem("m2script_product_page_suffix") ?? localStorage.setItem("m2script_product_page_suffix", prompt("Set Product Page Suffix"));
         this.getStoreViews();
     };
 
-    M2Scripts.getCurrentStoreViewUrlCode = function() {
+    window.M2Scripts.getCurrentStoreViewUrlCode = function() {
         return window.location.pathname.split('/').length ? window.location.pathname.split('/')[1] : "";
    };
 
-   M2Scripts.getCurrentBaseUrl = function() {
+   window.M2Scripts.getCurrentBaseUrl = function() {
         return window.location.origin;
     },
 
-    M2Scripts.getApiStoreCode = function(urlStoreCode = null) {
+    window.M2Scripts.getApiStoreCode = function(urlStoreCode = null) {
         const storeView = this.getStoreViewByCurrentUrl();
         if (!storeView) {
             return 'all';
@@ -44,11 +44,11 @@
         }
     };
 
-    M2Scripts.getApiBaseUrl = function() {
+    window.M2Scripts.getApiBaseUrl = function() {
         return this.apiSiteBaseUrl === "" ? window.location.origin : this.apiSiteBaseUrl;
     };
 
-    M2Scripts.getStoreViews = function() {
+    window.M2Scripts.getStoreViews = function() {
         var storeViews = localStorage.getItem("m2script_store_views");
         if (!storeViews) {
             var formatedStoreViews = {},
@@ -78,7 +78,7 @@
         }
     };
 
-    M2Scripts.getStoreViewByCurrentUrl = function() {
+    window.M2Scripts.getStoreViewByCurrentUrl = function() {
         const currentStoreCodeUrl = this.getCurrentStoreViewUrlCode(),
               currentUrl = this.getCurrentBaseUrl() + (currentStoreCodeUrl == "" ? "" : "/" + currentStoreCodeUrl) + "/";
 
@@ -91,14 +91,14 @@
         return currentStoreView;
     };
 
-    M2Scripts.setStoreViews = function(storeViews) {
+    window.M2Scripts.setStoreViews = function(storeViews) {
         localStorage.setItem("m2script_store_views", JSON.stringify(storeViews));
     };
 
     // main function
-    M2Scripts.isReady(function () {
-        M2Scripts.init();
-        M2Scripts.addStyle();
-        M2Scripts.addMainContainer();
+    window.M2Scripts.isReady(function () {
+        window.M2Scripts.init();
+        window.M2Scripts.addStyle();
+        window.M2Scripts.addMainContainer();
     });
 })();
