@@ -7,9 +7,9 @@
 // @match        *://*/*admin/system_store/index*/*
 // @icon         https://www.shareicon.net/download/2016/07/10/119934_magento.ico
 // @supportURL   https://github.com/Theriol666/m2scripts
-// @updateURL    https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_script/store_list?token=GHSAT0AAAAAAC3ESOHJYIIEOIQG3EFBWWGEZ3BWQTQ
-// @downloadURL  https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_script/store_list?token=GHSAT0AAAAAAC3ESOHJYIIEOIQG3EFBWWGEZ3BWQTQ
-// @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_app?token=GHSAT0AAAAAAC3ESOHJYIIEOIQG3EFBWWGEZ3BWQTQ
+// @updateURL    https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_script/store_list.js
+// @downloadURL  https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_script/store_list.js
+// @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_app.js
 // @grant        GM_getValue
 // @grant        GM_setValue
 // @grant        GM_setClipboard
