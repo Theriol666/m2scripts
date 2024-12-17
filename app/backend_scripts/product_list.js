@@ -103,7 +103,7 @@
     }
 
     function start(){
-        M2Scripts.isReady(function () {ù
+        M2Scripts.isReady(function () {
             addButtons();
         });
     }
