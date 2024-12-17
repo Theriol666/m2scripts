@@ -137,7 +137,7 @@
                             successCallBack();
                         });        
                     } else {
-                        setTimeout(function() { defer(self.isReady(successCallBack)) }, 50);
+                        setTimeout(function() { self.isReady(successCallBack) }, 50);
                     }
                 }
             },
