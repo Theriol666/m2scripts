@@ -18,8 +18,6 @@
 // @noframes
 // ==/UserScript==
 
-window.jq = $.noConflict(true);
-
 (function () {
     'use strict';
     M2Scripts.isReady(function () {
