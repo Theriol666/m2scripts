@@ -39,7 +39,7 @@
     }
 
     function start(){
-        M2Scripts.isReady(function () {
+        window.M2Scripts.isReady(function () {
             addButtons();
         });
     }
