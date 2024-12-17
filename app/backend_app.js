@@ -3,6 +3,7 @@
 
     (function (window) {
         window.M2Scripts = {
+            run: false,
             apiSiteBaseUrl: "",
             productPageSuffix: "",
             maxApiRetry: 5,
@@ -125,10 +126,20 @@
                     window.M2Scripts = true;
                 }
             },
-            async isReady(successCallBack) {
-                await jQuery(document).ready(function(){
+            isReady(successCallBack) {
+                const self = this;
+                if (self.run === true) {
                     successCallBack();
-                });
+                } else {
+                    if (window.jQuery) {
+                        jQuery(document).ready(function(){
+                            self.run = true;
+                            successCallBack();
+                        });        
+                    } else {
+                        setTimeout(function() { defer(self.isReady(successCallBack)) }, 50);
+                    }
+                }
             },
             addStyle() {
                 jQuery('head').append(`<style type="text/css"></style>`);
