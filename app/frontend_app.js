@@ -9,7 +9,6 @@
 // @supportURL   https://github.com/Theriol666/m2scripts
 // @updateURL    https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_app.js
 // @downloadURL  https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_app.js
-// @require      https://code.jquery.com/jquery-3.4.1.min.js
 // @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/main_app.js
 // @grant        GM_getValue
 // @grant        GM_setValue
@@ -18,7 +17,7 @@
 // @noframes
 // ==/UserScript==
 
-window.jq = $.noConflict(true);
+window.jq = jQuery.noConflict(true);
 
 (function () {
     'use strict';
