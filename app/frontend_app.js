@@ -137,7 +137,7 @@
                             successCallBack();
                         });        
                     } else {
-                        setTimeout(self.isReady(successCallBack), 50);
+                        setTimeout(self.isReady(successCallBack), 250);
                     }
                 }
             },
