@@ -122,23 +122,19 @@
                     container.style.bottom = 0;
                     container.style.zIndex = "9999999";
                     document.querySelector("body").appendChild(container);
-        
-                    window.M2Scripts = true;
                 }
             },
             isReady(successCallBack) {
                 const self = this;
                 if (self.run === true) {
                     successCallBack();
+                } else if (typeof jQuery === "undefined") {
+                    setTimeout(function() {self.isReady(successCallBack)}, 2000);
                 } else {
-                    if (window.jQuery) {
-                        jQuery(document).ready(function(){
-                            self.run = true;
-                            successCallBack();
-                        });        
-                    } else {
-                        setTimeout(self.isReady(successCallBack), 2000);
-                    }
+                    jQuery(document).ready(function(){
+                        self.run = true;
+                        successCallBack();
+                    });
                 }
             },
             addStyle() {
