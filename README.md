@@ -44,6 +44,7 @@ In this way you can customize functionalities or new script for you needs.
 You must just rispect 3 things to create new scripts:
 * Use this global variables:
 > // @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_app.js
+> 
 > // @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/init_app.js
 * Create a class that extends "M2Scripts"
 * Add the class factory: initM2Script(YouClassM2Scripts);
