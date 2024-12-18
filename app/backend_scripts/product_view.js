@@ -4,7 +4,7 @@
 // @version      2024-10-28
 // @description  Get info from current product
 // @author       rbortolotto
-// @match        *://*/*catalog/product/index*/*
+// @match        *://*/*catalog/product/edit*/*
 // @supportURL   https://github.com/Theriol666/m2scripts
 // @updateURL    https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_script/product_view.js
 // @downloadURL  https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_script/product_view.js
