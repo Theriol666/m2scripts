@@ -30,3 +30,8 @@ All scripts storage some data inside the browser local storage. The main informa
 - m2script_api_token : saved on session storage, is the API Token get from the first API call. If Magento get a 402, a new one will asks.
 
 If you delete one of those keys the first running scripts will ask you the information again.
+
+## Use single functionality
+From browser console you can call a method of a script. For example, if you are in on FE you can use the ProductM2Scripts to make an API call:
+
+> window.ProductM2Scripts.makeApiCall('/rest/all/V1/products/20086717/')
