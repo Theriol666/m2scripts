@@ -18,12 +18,12 @@
 class ProductListM2Scripts extends M2Scripts {
 
     constructor(initCallback = null) {
+        super(initCallback);
+
         this.skuColumn = null;
         this.imageCulumn = null;
         this.urlKeyCulumn = null;
-        this.imagePlaceholderValue = 'placeholder';
-        
-        super(initCallback);
+        this.imagePlaceholderValue = 'placeholder';        
     }
 
     getColumnByText(text) {

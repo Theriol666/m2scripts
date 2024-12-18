@@ -19,9 +19,9 @@
 class ProductAttributeViewM2Scripts extends M2Scripts {
 
     constructor(initCallback = null) {
-        this.emptyColumnHidden = false;
-    
         super(initCallback);
+
+        this.emptyColumnHidden = false;
     }
 
     importOptions(valuesToAdd = []) {

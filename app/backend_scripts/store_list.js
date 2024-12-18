@@ -19,9 +19,9 @@
 class StoreListM2Scripts extends M2Scriptss {
 
     constructor(initCallback = null) {
-        this.idRegex = /_id\/(\d+)\//;
-        
         super(initCallback);
+
+        this.idRegex = /_id\/(\d+)\//;
     }
 
     showStoresValue() {

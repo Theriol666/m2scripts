@@ -19,10 +19,10 @@
 class OrderViewM2Scripts extends M2Scripts {
 
     constructor(initCallback = null) {
-        this.regex = /order_id\/(\d+)\//;
-        this.orderId = window.location.pathname.match(this.regex)[1];
-    
         super(initCallback);
+
+        this.regex = /order_id\/(\d+)\//;
+        this.orderId = window.location.pathname.match(this.regex)[1];    
     }
 
     getOrderInformation() {
