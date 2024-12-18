@@ -9,26 +9,26 @@
 // @supportURL   https://github.com/Theriol666/m2scripts
 // @updateURL    https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_script/store_list.js
 // @downloadURL  https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_script/store_list.js
-// @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_app.js
-// @grant        GM_getValue
-// @grant        GM_setValue
-// @grant        GM_setClipboard
+// @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/init_app.js
+// @grant        GM_getResourceText
 // @run-at       document-body
 // @noframes
 // ==/UserScript==
 
-(function() {
-    'use strict';
+// add M2Scripts from init_app.js
+ensureScriptExists("https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_app.js")
 
-    const idRegex = /_id\/(\d+)\//;
+class StoreListM2Scripts extends M2Scriptss {
+    idRegex = /_id\/(\d+)\//;
 
-    function showStoresValue() {
-        const cells = document.querySelectorAll("table#storeGrid_table tbody td");
+    showStoresValue() {
+        const cells = document.querySelectorAll("table#storeGrid_table tbody td"),
+              self = this;
         cells.forEach(function(cell, index) {
             let idField = document.createElement("input"),
                 codeField = document.createElement("input"),
                 code = cell.innerText.replace("(Code: ", "").replace(")","").split("\n")[1],
-                matchId = cell.querySelector("a").href.match(idRegex),
+                matchId = cell.querySelector("a").href.match(self.idRegex),
                 type = cell.dataset.column;
 
             codeField.name = type + "_" + code;
@@ -40,20 +40,9 @@
         });
     }
 
-    function addButtons() {
-        const container = document.querySelector('.m2scripts-contianer');
-        if (container === null) {
-            console.log("Error: no container for M2 Scripts");
-        }
-
-        window.M2Scripts.addButtonToMainContainer("Show values", showStoresValue ,"showStoresValue");
+    addButtons() {
+        window.M2Scripts.addButtonToMainContainer("Show values", this.showStoresValue ,"showStoresValue");
     }
+}
 
-    function start(){
-        window.M2Scripts.isReady(function () {
-            addButtons();
-        });
-    }
-
-    start();
-})();
+initM2Script(StoreListM2Scripts);

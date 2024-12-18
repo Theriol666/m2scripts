@@ -10,18 +10,17 @@
 // @supportURL   https://github.com/Theriol666/m2scripts
 // @updateURL    https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_script/product.js
 // @downloadURL  https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_script/product.js
-// @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_app.js
-// @grant        GM_getValue
-// @grant        GM_setValue
-// @grant        GM_setClipboard
+// @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/init_app.js
+// @grant        GM_getResourceText
 // @run-at       document-body
 // @noframes
 // ==/UserScript==
 
-(function() {
-    'use strict';
+// add M2Scripts from init_app.js
+ensureScriptExists("https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_app.js")
 
-    function getProductUrl(event) {
+class ProductM2Scripts extends M2Scripts {
+    getProductUrl(event) {
         const urlStoreView = window.M2Scripts.getCurrentStoreViewUrlCode(),
               apiStoreCode = window.M2Scripts.getApiStoreCode(),
               sku = event.target.className !== 'm2scripts-getProductUrlName',
@@ -55,29 +54,18 @@
         return productUrl;
     }
 
-    function gotoProductPage(event) {
+    gotoProductPage(event) {
         let productUrl = getProductUrl(event);
         if (productUrl) {
             window.location = productUrl;
         }
     }
 
-    function addButtons() {
-        const container = document.querySelector('.m2scripts-contianer');
-        if (container === null) {
-            console.log("Error: no container for M2 Scripts");
-        }
-
-        window.M2Scripts.addButtonToMainContainer("Get Product Url by SKU", getProductUrl ,"getProductUrl");
-        window.M2Scripts.addButtonToMainContainer("Get Product Url by Name", getProductUrl ,"getProductUrlName");
-        window.M2Scripts.addButtonToMainContainer("Go To Product Page", gotoProductPage ,"gotoProductPage");
+    addButtons() {
+        this.addButtonToMainContainer("Get Product Url by SKU", this.getProductUrl ,"getProductUrl");
+        this.addButtonToMainContainer("Get Product Url by Name", this.getProductUrl ,"getProductUrlName");
+        this.addButtonToMainContainer("Go To Product Page", this.gotoProductPage ,"gotoProductPage");
     }
+}
 
-    function start(){
-        window.M2Scripts.isReady(function () {
-            addButtons();
-        });
-    }
-
-    start();
-})();
+initM2Script(ProductM2Scripts);

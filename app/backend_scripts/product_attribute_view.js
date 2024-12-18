@@ -9,20 +9,19 @@
 // @supportURL   https://github.com/Theriol666/m2scripts
 // @updateURL    https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_script/product_attribute_view.js
 // @downloadURL  https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_script/product_attribute_view.js
-// @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_app.js
-// @grant        GM_getValue
-// @grant        GM_setValue
-// @grant        GM_setClipboard
+// @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/init_app.js
+// @grant        GM_getResourceText
 // @run-at       document-body
 // @noframes
 // ==/UserScript==
 
-(function() {
-    'use strict';
+// add M2Scripts from init_app.js
+ensureScriptExists("https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_app.js")
 
-    let emptyColumnHidden = false;
+class ProductAttributeViewM2Scripts extends M2Scripts {
+    emptyColumnHidden = false;
 
-    function importOptions(valuesToAdd = []) {
+    importOptions(valuesToAdd = []) {
         const headColumns = document.querySelectorAll("#manage-options-panel table thead tr th"),
               columnsTotal = headColumns.length,
               addButton = document.querySelector("button#add_new_option_button"),
@@ -56,7 +55,7 @@
         parentButton.disabled = false;
     }
 
-    function manageImportForm() {
+    manageImportForm() {
         const importForm = document.querySelector(".m2scripts-contianer .import-options-form"),
               importData = importForm.querySelector("#options_import_data"),
               importDataSeparator = importForm.querySelector("#options_import_separator");
@@ -64,16 +63,16 @@
         let values = importData.value.split("\n");
 
         values = Array.from(values).map(value => value.split(importDataSeparator.value));
-        importOptions(values);
-        closeImportForm();
+        this.importOptions(values);
+        this.closeImportForm();
     }
 
-    function closeImportForm() {
+    closeImportForm() {
         const importForm = document.querySelector(".m2scripts-contianer .import-options-form");
         importForm.style.display = "none";
     }
 
-    function createImportForm() {
+    createImportForm() {
         const container = document.querySelector('.m2scripts-contianer'),
               formContainer = container.querySelector(".import-options-form") === null ? document.createElement("div") : container.querySelector(".import-options-form"),
               formDisplay = formContainer.style.display;
@@ -91,20 +90,20 @@
                 <button name="options_import_submit" id="options_import_submit">Import data</button>
                 `;
             container.prepend(formContainer);
-            container.querySelector(".import-options-form span").addEventListener("click", closeImportForm);
-            container.querySelector("#options_import_submit").addEventListener("click", manageImportForm);
+            container.querySelector(".import-options-form span").addEventListener("click", this.closeImportForm);
+            container.querySelector("#options_import_submit").addEventListener("click", this.manageImportForm);
         } else {
             formContainer.style.display = formDisplay === "block" ? "none" : "block";
         }
     }
 
-    function toggleEmptyOptionsColumn(event) {
+    toggleEmptyOptionsColumn(event) {
 
         const button = event.target;
 
         button.disabled = true;
 
-        if (emptyColumnHidden === false) {
+        if (this.emptyColumnHidden === false) {
             const table = document.querySelector("#manage-options-panel table"),
                   headColumns = table.querySelectorAll("thead tr th"),
                   totalRows = table.rows.length - 2, // removed last 2 rows for option and other
@@ -133,7 +132,7 @@
                 }
             }
 
-            emptyColumnHidden = true;
+            this.emptyColumnHidden = true;
             button.disabled = false;
 
         } else {
@@ -151,27 +150,16 @@
                 }
             });
 
-            emptyColumnHidden = false;
+            this.emptyColumnHidden = false;
             button.disabled = false;;
         }
 
     }
 
-    function addButtons() {
-        const container = document.querySelector('.m2scripts-contianer');
-        if (container === null) {
-            console.log("Error: no container for M2 Scripts");
-        }
-
-        window.M2Scripts.addButtonToMainContainer("Toggle empty columns", toggleEmptyOptionsColumn ,"toggleEmptyOptionsColumn");
-        window.M2Scripts.addButtonToMainContainer("Import options as CSV", createImportForm ,"createImportForm");
+    addButtons() {
+        this.addButtonToMainContainer("Toggle empty columns", this.toggleEmptyOptionsColumn ,"toggleEmptyOptionsColumn");
+        this.addButtonToMainContainer("Import options as CSV", this.createImportForm ,"createImportForm");
     }
+}
 
-    function start(){
-        window.M2Scripts.isReady(function () {
-            addButtons();
-        });
-    }
-
-    start();
-})();
+initM2Script(ProductAttributeViewM2Scripts);

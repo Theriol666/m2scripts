@@ -8,41 +8,29 @@
 // @supportURL   https://github.com/Theriol666/m2scripts
 // @updateURL    https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_script/product_view.js
 // @downloadURL  https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_script/product_view.js
-// @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_app.js
-// @grant        GM_getValue
-// @grant        GM_setValue
-// @grant        GM_setClipboard
+// @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/init_app.js
+// @grant        GM_getResourceText
 // @run-at       document-body
 // @noframes
 // ==/UserScript==
 
+// add M2Scripts from init_app.js
+ensureScriptExists("https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_app.js")
 
-(function() {
-    'use strict';
+class ProductViewM2Scripts extends M2Scripts {
 
-    function getProductInformation() {
+    getProductInformation() {
         let sku = jQuery('input[name="product[sku]"]').val();
-        if (typeof window.M2Scripts !== undefined && sku) {
+        if (typeofsku) {
             alert(JSON.stringify(window.M2Scripts.makeApiCall('/rest/all/V1/products/' + sku), null, 2));
         } else {
-            alert("Require JS not loaded yet");
+            alert("Sku field not found");
         }
     }
 
-    function addButtons() {
-        const container = document.querySelector('.m2scripts-contianer');
-        if (container === null) {
-            console.log("Error: no container for M2 Scripts");
-        }
-
-        window.M2Scripts.addButtonToMainContainer("Get Product Information", getProductInformation ,"getProductInformation");
+    addButtons() {
+        window.M2Scripts.addButtonToMainContainer("Get Product Information", this.getProductInformation ,"getProductInformation");
     }
+}
 
-    function start(){
-        window.M2Scripts.isReady(function () {
-            addButtons();
-        });
-    }
-
-    start();
-})();
+initM2Script(ProductViewM2Scripts);

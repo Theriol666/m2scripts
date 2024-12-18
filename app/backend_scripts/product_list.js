@@ -8,23 +8,23 @@
 // @supportURL   https://github.com/Theriol666/m2scripts
 // @updateURL    https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_script/product_list.js
 // @downloadURL  https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_script/product_list.js
-// @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_app.js
-// @grant        GM_getValue
-// @grant        GM_setValue
-// @grant        GM_setClipboard
+// @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/init_app.js
+// @grant        GM_getResourceText
 // @run-at       document-body
 // @noframes
 // ==/UserScript==
 
+// add M2Scripts from init_app.js
+ensureScriptExists("https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_app.js")
 
-(function() {
-    'use strict';
-    var skuColumn = null,
-        imageCulumn = null,
-        urlKeyCulumn = null,
-        imagePlaceholderValue = 'placeholder';
+class ProductListM2Scripts extends M2Scripts {
 
-    function getColumnByText(text) {
+    skuColumn = null;
+    imageCulumn = null;
+    urlKeyCulumn = null;
+    imagePlaceholderValue = 'placeholder';
+
+    getColumnByText(text) {
         var columnList = null;
         document.querySelectorAll(".admin__data-grid-outer-wrap > .admin__data-grid-wrap > table.data-grid > thead > tr > th > span.data-grid-cell-content").forEach((column, index) => {
             if (columnList === null && column.innerText === text) {
@@ -37,31 +37,31 @@
         return columnList;
     }
 
-    function getSkuColumn() {
-        if (skuColumn === null) {
-            skuColumn = getColumnByText("SKU");
+    getSkuColumn() {
+        if (this.skuColumn === null) {
+            this.skuColumn = this.getColumnByText("SKU");
         }
 
-        return skuColumn;
+        return this.skuColumn;
     }
 
-    function getThumbColumn() {
-        if (imageCulumn === null) {
-            imageCulumn = getColumnByText("Thumbnail");
+    getThumbColumn() {
+        if (this.imageCulumn === null) {
+            this.imageCulumn = this.getColumnByText("Thumbnail");
         }
 
-        return imageCulumn;
+        return this.imageCulumn;
     }
 
-    function getUrlkeyColumn() {
-        if (urlKeyCulumn === null) {
-            urlKeyCulumn = getColumnByText("URL Key");
+    getUrlkeyColumn() {
+        if (this.urlKeyCulumn === null) {
+            this.urlKeyCulumn = this.getColumnByText("URL Key");
         }
 
-        return urlKeyCulumn;
+        return this.urlKeyCulumn;
     }
 
-    function getSku() {
+    getSku() {
         if (document.querySelector(".admin__data-grid-outer-wrap > .admin__data-grid-wrap > table.data-grid") !== null) {
             var skus=[];
             document.querySelectorAll('.admin__data-grid-outer-wrap > .admin__data-grid-wrap > table.data-grid > tbody > tr > td:nth-child('+ getSkuColumn() +')').forEach((element) =>{ skus.push(element.innerText)});
@@ -69,7 +69,7 @@
         }
     }
 
-    function getNoImage() {
+    getNoImage() {
         if (document.querySelector(".admin__data-grid-outer-wrap > .admin__data-grid-wrap > table.data-grid") !== null) {
             var skus=[];
             // imgUrl = prompt("Img URL: ", imagePlaceholderValue);
@@ -78,7 +78,7 @@
         }
     }
 
-    function getUrlKey() {
+    getUrlKey() {
         if (document.querySelector(".admin__data-grid-outer-wrap > .admin__data-grid-wrap > table.data-grid") !== null) {
             document.querySelectorAll('.admin__data-grid-outer-wrap > .admin__data-grid-wrap > table.data-grid > tbody > tr > td:nth-child('+ getUrlkeyColumn() +') div').forEach((element) =>{
                 let url = element.innerHTML,
@@ -91,22 +91,11 @@
         }
     }
 
-    function addButtons() {
-        const container = document.querySelector('.m2scripts-contianer');
-        if (container === null) {
-            console.log("Error: no container for M2 Scripts");
-        }
-
-        window.M2Scripts.addButtonToMainContainer("Get SKUs From List", getSku ,"getSku");
-        window.M2Scripts.addButtonToMainContainer("Get SKUs with no Thumb", getNoImage ,"getNoImage");
-        window.M2Scripts.addButtonToMainContainer("Get Url Key", getUrlKey ,"getUrlKey");
+    addButtons() {
+        this.addButtonToMainContainer("Get SKUs From List", this.getSku ,"getSku");
+        this.addButtonToMainContainer("Get SKUs with no Thumb", this.getNoImage ,"getNoImage");
+        this.addButtonToMainContainer("Get Url Key", this.getUrlKey ,"getUrlKey");
     }
+}
 
-    function start(){
-        window.M2Scripts.isReady(function () {
-            addButtons();
-        });
-    }
-
-    start();
-})();
+initM2Script(ProductListM2Scripts);

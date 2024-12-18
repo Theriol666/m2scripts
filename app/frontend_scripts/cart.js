@@ -10,39 +10,23 @@
 // @supportURL   https://github.com/Theriol666/m2scripts
 // @updateURL    https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_script/cart.js
 // @downloadURL  https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_script/cart.js
-// @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_app.js
-// @grant        GM_getValue
-// @grant        GM_setValue
-// @grant        GM_setClipboard
+// @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/init_app.js
+// @grant        GM_getResourceText
 // @run-at       document-body
 // @noframes
 // ==/UserScript==
 
-(function() {
-    'use strict';
+// add M2Scripts from init_app.js
+ensureScriptExists("https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_app.js")
 
-    function getCartInfo() {
-        if (typeof window.M2Scripts !== undefined) {
-            alert(JSON.stringify(require('Magento_Customer/js/customer-data').get('cart')(), null, 2));
-        } else {
-            alert("Require JS not loaded yet");
-        }
+class CartM2Scripts extends M2Scripts {
+    getCartInfo() {
+        alert(JSON.stringify(require('Magento_Customer/js/customer-data').get('cart')(), null, 2));
     }
 
-    function addButtons() {
-        const container = document.querySelector('.m2scripts-contianer');
-        if (container === null) {
-            console.log("Error: no container for M2 Scripts");
-        }
-
-        window.M2Scripts.addButtonToMainContainer("Get Cart Info", getCartInfo ,"getCartInfo");
+    addButtons() {
+        this.addButtonToMainContainer("Get Cart Info", this.getCartInfo ,"getCartInfo");
     }
+}
 
-    function start(){
-        window.M2Scripts.isReady(function () {
-            addButtons();
-        });
-    }
-
-    start();
-})();
+initM2Script(CartM2Scripts);

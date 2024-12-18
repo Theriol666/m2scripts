@@ -9,41 +9,26 @@
 // @supportURL   https://github.com/Theriol666/m2scripts
 // @updateURL    https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_script/order_view.js
 // @downloadURL  https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_script/order_view.js
-// @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_app.js
-// @grant        GM_getValue
-// @grant        GM_setValue
-// @grant        GM_setClipboard
+// @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/init_app.js
+// @grant        GM_getResourceText
 // @run-at       document-body
 // @noframes
 // ==/UserScript==
 
-(function() {
-    'use strict';
-    const regex = /order_id\/(\d+)\//,
-          orderId = window.location.pathname.match(regex)[1];
+// add M2Scripts from init_app.js
+ensureScriptExists("https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_app.js")
 
-    function getOrderInformation() {
-        if (typeof window.M2Scripts !== undefined) {
-            alert(JSON.stringify(window.M2Scripts.makeApiCall('/rest/all/V1/orders/' + orderId), null, 2));
-        } else {
-            alert("Require JS not loaded yet");
-        }
+class OrderViewM2Scripts extends M2Scripts {
+    regex = /order_id\/(\d+)\//;
+    orderId = window.location.pathname.match(this.regex)[1];
+
+    getOrderInformation() {
+        alert(JSON.stringify(window.M2Scripts.makeApiCall('/rest/all/V1/orders/' + this.orderId), null, 2));
     }
 
-    function addButtons() {
-        const container = document.querySelector('.m2scripts-contianer');
-        if (container === null) {
-            console.log("Error: no container for M2 Scripts");
-        }
-
-        window.M2Scripts.addButtonToMainContainer("Get Order Information", getOrderInformation ,"getOrderInformation");
+    addButtons() {
+        this.addButtonToMainContainer("Get Order Information", this.getOrderInformation ,"getOrderInformation");
     }
+}
 
-    function start(){
-        window.M2Scripts.isReady(function () {
-            addButtons();
-        });
-    }
-
-    start();
-})();
+initM2Script(OrderViewM2Scripts);

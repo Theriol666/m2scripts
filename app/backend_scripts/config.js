@@ -9,23 +9,24 @@
 // @supportURL   https://github.com/Theriol666/m2scripts
 // @updateURL    https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_script/config.js
 // @downloadURL  https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_script/config.js
-// @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_app.js
-// @grant        GM_getValue
-// @grant        GM_setValue
-// @grant        GM_setClipboard
+// @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/init_app.js
+// @grant        GM_getResourceText
 // @run-at       document-body
 // @noframes
 // ==/UserScript==
 
-(function() {
-    'use strict';
-    var lastConfig = null,
-        lastValues = null,
-        selectionEventActive = null,
-        pathShown = false;
+// add M2Scripts from init_app.js
+ensureScriptExists("https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_app.js")
 
-    function showConfigPath(event) {
-        if (pathShown === true) {
+class ConfigManagerM2Scripts extends M2Scripts {
+
+    lastConfig = null;
+    lastValues = null;
+    selectionEventActive = null;
+    pathShown = false;
+
+    showConfigPath(event) {
+        if (this.pathShown === true) {
             return
         }
         const inputs = document.querySelectorAll("#container form#config-edit-form td.value input"),
@@ -51,21 +52,21 @@
             table.parentElement.appendChild(document.createElement("p")).innerHTML = "<strong>Config Path: " + configId + "</strong>";
         });
 
-        pathShown = true;
+        this.pathShown = true;
         parentButton.disabled = true;
     }
 
-    function toggleValuesToSelect() {
-        let configPath = prompt("Add Configuration Path", (lastConfig ? lastConfig : '')),
-            configValues = prompt("Configuration values separated by comma (,).", (lastConfig ? lastValues : ''));
+    toggleValuesToSelect() {
+        let configPath = prompt("Add Configuration Path", (this.lastConfig ? this.lastConfig : '')),
+            configValues = prompt("Configuration values separated by comma (,).", (this.lastConfig ? this.lastValues : ''));
 
         if (configPath === null || configValues === null) {
             console.log("Not valid configuration");
             return;
         }
 
-        lastConfig = configPath;
-        lastValues = configValues;
+        this.lastConfig = configPath;
+        this.lastValues = configValues;
 
         configPath = configPath.replace("/","_");
         configValues = configValues.split(",");
@@ -84,12 +85,12 @@
         });
     }
 
-    function activateSelection(event) {
+    activateSelection(event) {
         const element = event.target,
-              optionsRequest = selectionEventActive === "options",
-              valuesRequest = selectionEventActive === "values";
+              optionsRequest = this.selectionEventActive === "options",
+              valuesRequest = this.selectionEventActive === "values";
 
-        if (selectionEventActive === null || element.nodeName !== "SELECT") {
+        if (this.selectionEventActive === null || element.nodeName !== "SELECT") {
             return;
         }
 
@@ -107,21 +108,21 @@
                 alert(labels.join("\n"));
             }
             document.querySelectorAll(".m2scripts-info").forEach(el => el.remove());
-            const activatedButtonClass = selectionEventActive === "options" ? ".m2scripts-getSelectOptions" : ".m2scripts-getSelectValues",
+            const activatedButtonClass = this.selectionEventActive === "options" ? ".m2scripts-getSelectOptions" : ".m2scripts-getSelectValues",
                   activatedButton = document.querySelector(activatedButtonClass);
-            document.querySelector("body").removeEventListener('click', activateSelection);
+            document.querySelector("body").removeEventListener('click', this.activateSelection);
             activatedButton.disabled = false;
-            selectionEventActive = null;
+            this.selectionEventActive = null;
         }
     }
 
-    function getSelectProprieties(event) {
+    getSelectProprieties(event) {
         const selectInputs = document.querySelectorAll("#container select"),
               element = event.target,
               optionsRequest = element.className === "m2scripts-getSelectOptions",
               valuesRequest = element.className === "m2scripts-getSelectValues";
 
-        if (selectionEventActive !== null) {
+        if (this.selectionEventActive !== null) {
             console.log("Select event already active");
             return;
         }
@@ -142,28 +143,16 @@
             });
             element.disabled = true;
             document.querySelector("body").addEventListener('click', activateSelection, false);
-            selectionEventActive = optionsRequest ? "options" : "values";
+            this.selectionEventActive = optionsRequest ? "options" : "values";
         }
     }
 
-    function addButtons() {
-
-        const container = document.querySelector('.m2scripts-contianer');
-        if (container === null) {
-            console.log("Error: no container for M2 Scripts");
-        }
-
-        window.M2Scripts.addButtonToMainContainer("Show Config Path", showConfigPath ,"showConfigPath");
-        window.M2Scripts.addButtonToMainContainer("Get Values From Select", getSelectProprieties ,"getSelectValues");
-        window.M2Scripts.addButtonToMainContainer("Get Options From Select", getSelectProprieties ,"getSelectOptions");
-        window.M2Scripts.addButtonToMainContainer("Toggle Values To Select", toggleValuesToSelect ,"toggleValuesToSelect");
+    addButtons() {
+        this.addButtonToMainContainer("Show Config Path", this.showConfigPath ,"showConfigPath");
+        this.addButtonToMainContainer("Get Values From Select", this.getSelectProprieties ,"getSelectValues");
+        this.addButtonToMainContainer("Get Options From Select", this.getSelectProprieties ,"getSelectOptions");
+        this.addButtonToMainContainer("Toggle Values To Select", this.toggleValuesToSelect ,"toggleValuesToSelect");
     }
+}
 
-    function start(){
-        window.M2Scripts.isReady(function () {
-            addButtons();
-        });
-    }
-
-    start();
-})();
+initM2Script(ConfigManagerM2Scripts);
