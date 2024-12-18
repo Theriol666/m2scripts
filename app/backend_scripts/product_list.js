@@ -66,7 +66,7 @@ class ProductListM2Scripts extends M2Scripts {
     getSku() {
         if (document.querySelector(".admin__data-grid-outer-wrap > .admin__data-grid-wrap > table.data-grid") !== null) {
             var skus=[];
-            document.querySelectorAll('.admin__data-grid-outer-wrap > .admin__data-grid-wrap > table.data-grid > tbody > tr > td:nth-child('+ getSkuColumn() +')').forEach((element) =>{ skus.push(element.innerText)});
+            document.querySelectorAll('.admin__data-grid-outer-wrap > .admin__data-grid-wrap > table.data-grid > tbody > tr > td:nth-child('+ this.getSkuColumn() +')').forEach((element) =>{ skus.push(element.innerText)});
             alert(skus.join(","))
         }
     }
@@ -75,14 +75,14 @@ class ProductListM2Scripts extends M2Scripts {
         if (document.querySelector(".admin__data-grid-outer-wrap > .admin__data-grid-wrap > table.data-grid") !== null) {
             var skus=[];
             // imgUrl = prompt("Img URL: ", imagePlaceholderValue);
-            document.querySelectorAll('tbody td:nth-child('+ getThumbColumn() +') img').forEach((element) =>{ if (element.src.includes(imagePlaceholderValue)) { skus.push(element.parentNode.parentNode.parentNode.parentNode.querySelector("tbody td:nth-child("+ getSkuColumn() +")").innerText)} });
+            document.querySelectorAll('tbody td:nth-child('+ this.getThumbColumn() +') img').forEach((element) =>{ if (element.src.includes(this.imagePlaceholderValue)) { skus.push(element.parentNode.parentNode.parentNode.parentNode.querySelector("tbody td:nth-child("+ this.getSkuColumn() +")").innerText)} });
             alert(skus.join(","));
         }
     }
 
     getUrlKey() {
         if (document.querySelector(".admin__data-grid-outer-wrap > .admin__data-grid-wrap > table.data-grid") !== null) {
-            document.querySelectorAll('.admin__data-grid-outer-wrap > .admin__data-grid-wrap > table.data-grid > tbody > tr > td:nth-child('+ getUrlkeyColumn() +') div').forEach((element) =>{
+            document.querySelectorAll('.admin__data-grid-outer-wrap > .admin__data-grid-wrap > table.data-grid > tbody > tr > td:nth-child('+ this.getUrlkeyColumn() +') div').forEach((element) =>{
                 let url = element.innerHTML,
                     inputUrl = document.createElement("input");
                 inputUrl.value = url;
