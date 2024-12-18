@@ -35,3 +35,15 @@ If you delete one of those keys the first running scripts will ask you the infor
 From browser console you can call a method of a script. For example, if you are in on FE you can use the ProductM2Scripts to make an API call:
 
 > window.ProductM2Scripts.makeApiCall('/rest/all/V1/products/20086717/')
+
+# Customizations
+You can clone and create new script using the basic APP class M2Scripts contained in backend_app.js or frontend_app.js.
+
+In this way you can customize functionalities or new script for you needs.
+
+You must just rispect 3 things to create new scripts:
+* Use this global variables:
+> // @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_app.js
+> // @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/init_app.js
+* Create a class that extends "M2Scripts"
+* Add the class factory: initM2Script(YouClassM2Scripts);
