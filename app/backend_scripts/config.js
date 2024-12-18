@@ -18,10 +18,14 @@
 
 class ConfigManagerM2Scripts extends M2Scripts {
 
-    lastConfig = null;
-    lastValues = null;
-    selectionEventActive = null;
-    pathShown = false;
+    constructor(initCallback = null) {
+        super(initCallback);
+
+        this.lastConfig = null;
+        this.lastValues = null;
+        this.selectionEventActive = null;
+        this.pathShown = false;
+    }
 
     showConfigPath(event) {
         if (this.pathShown === true) {

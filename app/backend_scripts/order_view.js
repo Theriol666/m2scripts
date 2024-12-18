@@ -17,8 +17,13 @@
 // ==/UserScript==
 
 class OrderViewM2Scripts extends M2Scripts {
-    regex = /order_id\/(\d+)\//;
-    orderId = window.location.pathname.match(this.regex)[1];
+
+    constructor(initCallback = null) {
+        this.regex = /order_id\/(\d+)\//;
+        this.orderId = window.location.pathname.match(this.regex)[1];
+    
+        super(initCallback);
+    }
 
     getOrderInformation() {
         alert(JSON.stringify(window.M2Scripts.makeApiCall('/rest/all/V1/orders/' + this.orderId), null, 2));

@@ -6,7 +6,19 @@ class M2Scripts {
     apiRetry = 1;
 
     constructor(initCallback = null) {
+        this.bindMethods();
         this.isReady(initCallback);
+    }
+
+    bindMethods() {
+        // Itera su tutte le proprietà della classe
+        for (const key of Object.getOwnPropertyNames(Object.getPrototypeOf(this))) {
+            const value = this[key];
+            // Se la proprietà è una funzione, fai il bind al contesto dell'istanza
+            if (typeof value === 'function' && key !== 'constructor') {
+                this[key] = value.bind(this);
+            }
+        }
     }
 
     getApiBaseUrl() {

@@ -17,7 +17,12 @@
 // ==/UserScript==
 
 class ProductAttributeViewM2Scripts extends M2Scripts {
-    emptyColumnHidden = false;
+
+    constructor(initCallback = null) {
+        this.emptyColumnHidden = false;
+    
+        super(initCallback);
+    }
 
     importOptions(valuesToAdd = []) {
         const headColumns = document.querySelectorAll("#manage-options-panel table thead tr th"),

@@ -17,10 +17,14 @@
 
 class ProductListM2Scripts extends M2Scripts {
 
-    skuColumn = null;
-    imageCulumn = null;
-    urlKeyCulumn = null;
-    imagePlaceholderValue = 'placeholder';
+    constructor(initCallback = null) {
+        this.skuColumn = null;
+        this.imageCulumn = null;
+        this.urlKeyCulumn = null;
+        this.imagePlaceholderValue = 'placeholder';
+        
+        super(initCallback);
+    }
 
     getColumnByText(text) {
         var columnList = null;

@@ -17,7 +17,12 @@
 // ==/UserScript==
 
 class StoreListM2Scripts extends M2Scriptss {
-    idRegex = /_id\/(\d+)\//;
+
+    constructor(initCallback = null) {
+        this.idRegex = /_id\/(\d+)\//;
+        
+        super(initCallback);
+    }
 
     showStoresValue() {
         const cells = document.querySelectorAll("table#storeGrid_table tbody td"),
