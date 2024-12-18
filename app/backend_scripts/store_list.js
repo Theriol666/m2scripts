@@ -16,7 +16,7 @@
 // @noframes
 // ==/UserScript==
 
-class StoreListM2Scripts extends M2Scriptss {
+class StoreListM2Scripts extends M2Scripts {
 
     constructor(initCallback = null) {
         super(initCallback);
@@ -44,7 +44,7 @@ class StoreListM2Scripts extends M2Scriptss {
     }
 
     addButtons() {
-        window.M2Scripts.addButtonToMainContainer("Show values", this.showStoresValue ,"showStoresValue");
+        this.addButtonToMainContainer("Show values", this.showStoresValue ,"showStoresValue");
     }
 }
 
