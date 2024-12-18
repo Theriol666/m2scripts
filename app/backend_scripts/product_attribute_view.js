@@ -26,7 +26,6 @@ class ProductAttributeViewM2Scripts extends M2Scripts {
 
     importOptions(valuesToAdd = []) {
         const headColumns = document.querySelectorAll("#manage-options-panel table thead tr th"),
-              columnsTotal = headColumns.length,
               addButton = document.querySelector("button#add_new_option_button"),
               totalValues = valuesToAdd.length,
               parentButton = document.querySelector("button.m2scripts-createImportForm");
