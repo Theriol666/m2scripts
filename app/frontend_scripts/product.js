@@ -10,14 +10,12 @@
 // @supportURL   https://github.com/Theriol666/m2scripts
 // @updateURL    https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_script/product.js
 // @downloadURL  https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_script/product.js
+// @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_app.js
 // @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/init_app.js
 // @grant        GM_getResourceText
 // @run-at       document-body
 // @noframes
 // ==/UserScript==
-
-// add M2Scripts from init_app.js
-ensureScriptExists("https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_app.js")
 
 class ProductM2Scripts extends M2Scripts {
     getProductUrl(event) {

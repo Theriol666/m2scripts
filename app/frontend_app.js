@@ -5,7 +5,7 @@ class M2Scripts {
     maxApiRetry =  5;
     apiRetry = 1;
 
-    constructor(initCallback) {
+    constructor(initCallback = null) {
         this.isReady(initCallback);
     }
 
@@ -135,9 +135,9 @@ class M2Scripts {
         jQuery('head').append(`<style type="text/css"></style>`);
     }
 
-    isReady(successCallBack) {
+    isReady(successCallBack = null) {
         const self = this;
-        if (self.run === true) {
+        if (self.run === true && successCallBack !== null) {
             successCallBack();
         } else if (typeof jQuery === "undefined") {
             setTimeout(function() {self.isReady(successCallBack)}, 2000);
@@ -149,7 +149,9 @@ class M2Scripts {
                 self.addButtons();
 
                 self.run = true;
-                successCallBack();
+                if (successCallBack !== null) {
+                    successCallBack();
+                }
             });
         }
     }
