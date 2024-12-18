@@ -144,7 +144,7 @@ class ConfigManagerM2Scripts extends M2Scripts {
                 select.parentNode.appendChild(message);
             });
             element.disabled = true;
-            document.querySelector("body").addEventListener('click', activateSelection, false);
+            document.querySelector("body").addEventListener('click', this.activateSelection, false);
             this.selectionEventActive = optionsRequest ? "options" : "values";
         }
     }
