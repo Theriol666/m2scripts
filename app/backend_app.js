@@ -143,6 +143,7 @@
         };
     })(window);
 
+    // main function
     window.M2Scripts.isReady(function () {
         window.M2Scripts.addStyle();
         window.M2Scripts.addMainContainer();
