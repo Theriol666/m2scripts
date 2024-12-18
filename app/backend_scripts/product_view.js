@@ -20,15 +20,15 @@ class ProductViewM2Scripts extends M2Scripts {
 
     getProductInformation() {
         let sku = jQuery('input[name="product[sku]"]').val();
-        if (typeofsku) {
-            alert(JSON.stringify(window.M2Scripts.makeApiCall('/rest/all/V1/products/' + sku), null, 2));
+        if (typeof sku !== 'undefined') {
+            alert(JSON.stringify(this.makeApiCall('/rest/all/V1/products/' + sku), null, 2));
         } else {
             alert("Sku field not found");
         }
     }
 
     addButtons() {
-        window.M2Scripts.addButtonToMainContainer("Get Product Information", this.getProductInformation ,"getProductInformation");
+        this.addButtonToMainContainer("Get Product Information", this.getProductInformation ,"getProductInformation");
     }
 }
 
