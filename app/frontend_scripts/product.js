@@ -19,8 +19,8 @@
 
 class ProductM2Scripts extends M2Scripts {
     getProductUrl(event) {
-        const urlStoreView = window.M2Scripts.getCurrentStoreViewUrlCode(),
-              apiStoreCode = window.M2Scripts.getApiStoreCode(),
+        const urlStoreView = this.getCurrentStoreViewUrlCode(),
+              apiStoreCode = this.getApiStoreCode(),
               sku = event.target.className !== 'm2scripts-getProductUrlName',
               condition = sku ? "eq" : "like",
               value = prompt("Find product by " + (sku ? "sku" : "name") + " :"),
@@ -38,12 +38,12 @@ class ProductM2Scripts extends M2Scripts {
             .replace("{%value%}", value)
             .replace("{%condition%}", condition);
 
-        const productData = window.M2Scripts.makeApiCall(endpoint);
+        const productData = this.makeApiCall(endpoint);
         let productUrl = null;
         if (productData !== null && productData.items !== null) {
             for (let attr in productData.items[0].custom_attributes) {
                 if (productData.items[0].custom_attributes[attr].attribute_code === "url_key") {
-                    productUrl = window.M2Scripts.getCurrentBaseUrl() + (urlStoreView !== "" ? "/" + urlStoreView : "") + "/" + productData.items[0].custom_attributes[attr].value + window.M2Scripts.productPageSuffix;
+                    productUrl = this.getCurrentBaseUrl() + (urlStoreView !== "" ? "/" + urlStoreView : "") + "/" + productData.items[0].custom_attributes[attr].value + this.productPageSuffix;
                     alert (productUrl);
                 }
             }
@@ -53,7 +53,7 @@ class ProductM2Scripts extends M2Scripts {
     }
 
     gotoProductPage(event) {
-        let productUrl = getProductUrl(event);
+        let productUrl = this.getProductUrl(event);
         if (productUrl) {
             window.location = productUrl;
         }
