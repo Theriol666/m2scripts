@@ -60,7 +60,7 @@ class CategoryViewM2Scripts extends M2Scripts {
 
     addButtons() {
         this.addButtonToMainContainer("Show Category Attributes Code", this.showCategoryAttributesCode ,"showCategoryAttributesCode");
-        this.addButtonToMainContainer("Show Category Attributes Code", this.getAttributeInformation ,"Get Attribute Information");
+        this.addButtonToMainContainer("Get Attribute Information", this.getAttributeInformation ,"getAttributeInformation");
     }
 }
 
