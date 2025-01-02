@@ -51,8 +51,16 @@ class CategoryViewM2Scripts extends M2Scripts {
         });
     }
 
+    getAttributeInformation() {
+        const code = prompt("Attribute code");
+        if (code) {
+            alert(JSON.stringify(this.makeApiCall("/rest/V1/categories/attributes/" + code), null, 2));
+        }
+    }
+
     addButtons() {
         this.addButtonToMainContainer("Show Category Attributes Code", this.showCategoryAttributesCode ,"showCategoryAttributesCode");
+        this.addButtonToMainContainer("Show Category Attributes Code", this.getAttributeInformation ,"Get Attribute Information");
     }
 }
 
