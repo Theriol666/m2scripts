@@ -36,7 +36,7 @@ If you delete one of these keys, the script will prompt you for the information 
 ## Use single functionality
 From the browser console, you can call a method of a script. For example, if you are on the frontend (FE), you can use the ProductM2Scripts to make an API call:
 
-> window.ProductM2Scripts.makeApiCall('/rest/all/V1/products/20086717/')
+> document.ProductM2Scripts.makeApiCall('/rest/all/V1/products/20086717/')
 
 # Customizations
 You can clone and create new scripts using the basic APP class M2Scripts contained in backend_app.js or frontend_app.js.

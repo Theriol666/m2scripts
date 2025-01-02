@@ -7,10 +7,10 @@ function initM2Script(Class){
         setTimeout(function() { initM2Script(Class) }, m2ScriptsInitTimeoutInterval);
         m2ScriptsInitretry++;
     } else if(typeof Class !== "undefined") {
-        // load the class and assign the class name to the window context
+        // load the class and assign the class name to the document context
         let initClass = new Class();
             className = initClass.constructor.name;
-        eval('window.' + className + ' = initClass');
+        eval('document.' + className + ' = initClass');
 		console.debug(className + " Loaded");
     } else {
         console.error("M2Scripts is not defined");
