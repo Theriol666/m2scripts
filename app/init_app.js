@@ -11,6 +11,7 @@ function initM2Script(Class){
         let initClass = new Class();
             className = initClass.constructor.name;
         eval('window.' + className + ' = initClass');
+		console.debug(className + " Loaded");
     } else {
         console.error("M2Scripts is not defined");
     }
