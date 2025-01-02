@@ -54,7 +54,7 @@ class CategoryViewM2Scripts extends M2Scripts {
     getAttributeInformation() {
         const code = prompt("Attribute code");
         if (code) {
-            alert(JSON.stringify(this.makeApiCall("/rest/V1/categories/attributes/" + code), null, 2));
+            this.showJsonOnModal(this.makeApiCall("/rest/V1/categories/attributes/" + code));
         }
     }
 

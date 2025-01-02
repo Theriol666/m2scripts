@@ -26,7 +26,7 @@ class OrderViewM2Scripts extends M2Scripts {
     }
 
     getOrderInformation() {
-        alert(JSON.stringify(this.makeApiCall('/rest/all/V1/orders/' + this.orderId), null, 2));
+        this.showJsonOnModal(this.makeApiCall('/rest/all/V1/orders/' + this.orderId));
     }
 
     addButtons() {

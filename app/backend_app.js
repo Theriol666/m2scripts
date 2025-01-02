@@ -169,4 +169,37 @@ class M2Scripts {
     addButtons() {
         console.log("No buttons added");
     }
+	
+    showJsonOnModal(json = {}) {
+        const existingModal = document.querySelector("div.m2scripts-modal");
+
+		if (existingModal) {
+			existingModal.querySelector("pre#json").innerHTML = JSON.stringify(json, null, 2);
+		} else {
+			const modal = document.createElement("div"),
+				  modalCloseButton = document.createElement("div");
+  
+			modal.classList.add("m2scripts-modal");
+			modal.style.position = "fixed";
+			modal.style.top = "20%";
+			modal.style.left = "20%";
+			modal.style.zIndex = "9999999";
+			modal.style.maxHeight = "50%";
+			modal.style.width = "60%";
+			modal.style.overflow = "auto";
+			modal.style.background = "#FFF";
+			modal.innerHTML = '<pre id="json">' + JSON.stringify(json, null, 2) + '</pre>';
+
+			modalCloseButton.innerHTML = "<p>Close Modal</p>";
+			modalCloseButton.addEventListener("click", function (element) {
+				const parentModal = document.querySelector("div.m2scripts-modal");
+				if (parentModal) {
+					parentModal.remove();
+				}
+			});
+
+			modal.prepend(modalCloseButton);
+			document.querySelector("body").appendChild(modal);
+		}
+    }
 }

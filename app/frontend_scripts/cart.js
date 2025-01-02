@@ -19,7 +19,7 @@
 
 class CartM2Scripts extends M2Scripts {
     getCartInfo() {
-        alert(JSON.stringify(require('Magento_Customer/js/customer-data').get('cart')(), null, 2));
+        this.showJsonOnModal(require('Magento_Customer/js/customer-data').get('cart')());
     }
 
     addButtons() {

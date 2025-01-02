@@ -21,7 +21,7 @@ class ProductViewM2Scripts extends M2Scripts {
     getProductInformation() {
         let sku = jQuery('input[name="product[sku]"]').val();
         if (typeof sku !== 'undefined') {
-            alert(JSON.stringify(this.makeApiCall('/rest/all/V1/products/' + sku), null, 2));
+			this.showJsonOnModal(this.makeApiCall('/rest/all/V1/products/' + sku));
         } else {
             alert("Sku field not found");
         }
