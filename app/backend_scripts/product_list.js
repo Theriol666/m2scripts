@@ -7,8 +7,8 @@
 // @match        *://*/*catalog/product/index*/*
 // @icon         https://www.shareicon.net/download/2016/07/10/119934_magento.ico
 // @supportURL   https://github.com/Theriol666/m2scripts
-// @updateURL    https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_script/product_list.js
-// @downloadURL  https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_script/product_list.js
+// @updateURL    https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_scripts/product_list.js
+// @downloadURL  https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_scripts/product_list.js
 // @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/backend_app.js
 // @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/init_app.js
 // @grant        GM_getResourceText

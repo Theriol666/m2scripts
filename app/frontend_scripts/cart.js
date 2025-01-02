@@ -8,8 +8,8 @@
 // @exclude      *://*/*admin*/*
 // @icon         https://www.shareicon.net/download/2016/07/10/119934_magento.ico
 // @supportURL   https://github.com/Theriol666/m2scripts
-// @updateURL    https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_script/cart.js
-// @downloadURL  https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_script/cart.js
+// @updateURL    https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_scripts/cart.js
+// @downloadURL  https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_scripts/cart.js
 // @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/frontend_app.js
 // @require      https://raw.githubusercontent.com/Theriol666/m2scripts/refs/heads/main/app/init_app.js
 // @grant        GM_getResourceText
