@@ -8,7 +8,7 @@ function initM2Script(Class){
         m2ScriptsInitretry++;
     } else if(typeof Class !== "undefined") {
         // load the class and assign the class name to the document context
-        let initClass = new Class();
+        let initClass = new Class(),
             className = initClass.constructor.name;
         eval('document.' + className + ' = initClass');
 		console.debug(className + " Loaded");
