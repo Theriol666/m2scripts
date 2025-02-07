@@ -24,7 +24,7 @@ class CartM2Scripts extends M2Scripts {
 	
     getQuoteInfo() {
 		var quote = require("Magento_Checkout/js/model/quote"),
-			method = alert("Specify the method to use for Magento_Checkout/js/model/quote");
+			method = prompt("Specify the method to use for Magento_Checkout/js/model/quote");
 		
 		if (method) {
 			this.showJsonOnModal(eval("quote." + method));
