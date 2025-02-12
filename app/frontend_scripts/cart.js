@@ -21,14 +21,16 @@ class CartM2Scripts extends M2Scripts {
     getCartInfo() {
         this.showJsonOnModal(require('Magento_Customer/js/customer-data').get('cart')());
     }
-	
+
     getQuoteInfo() {
-		var quote = require("Magento_Checkout/js/model/quote"),
-			method = prompt("Specify the method to use for Magento_Checkout/js/model/quote");
-		
-		if (method) {
-			this.showJsonOnModal(eval("quote." + method));
-		}
+        var quote = require("Magento_Checkout/js/model/quote"),
+            method = prompt("Specify the method to use for Magento_Checkout/js/model/quote (empty to show list)");
+
+        if (method) {
+            this.showJsonOnModal(eval("quote." + method));
+        } else {
+            this.showJsonOnModal(Object.getOwnPropertyNames(quote));
+        }
     }
 
     addButtons() {
