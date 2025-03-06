@@ -33,9 +33,23 @@ class CartM2Scripts extends M2Scripts {
         }
     }
 
+    findPostalCode() {
+        var countryId = document.querySelector("select[name='country_id']");
+        if (!countryId) {
+            countryId = prompt("Set Country Id (Country ISO Code)");
+        } else {
+            countryId = countryId.value ?? null;
+        }
+
+        if (countryId) {
+            window.open('https://www.geonames.org/postalcode-search.html?q=&country=' + countryId);
+        }
+    }
+
     addButtons() {
         this.addButtonToMainContainer("Get Cart Info", this.getCartInfo ,"getCartInfo");
         this.addButtonToMainContainer("Get Quote Info", this.getQuoteInfo ,"getQuoteInfo");
+        this.addButtonToMainContainer("Find PostalCode", this.findPostalCode ,"findPostalCode");
     }
 }
 
