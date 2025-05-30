@@ -149,11 +149,16 @@ class ConfigManagerM2Scripts extends M2Scripts {
         }
     }
 
+    fastlyVclScript(event) {
+        window.open('https://fiddle.fastly.dev/new/vcl');
+    }
+
     addButtons() {
         this.addButtonToMainContainer("Show Config Path", this.showConfigPath ,"showConfigPath");
         this.addButtonToMainContainer("Get Values From Select", this.getSelectProprieties ,"getSelectValues");
         this.addButtonToMainContainer("Get Options From Select", this.getSelectProprieties ,"getSelectOptions");
         this.addButtonToMainContainer("Toggle Values To Select", this.toggleValuesToSelect ,"toggleValuesToSelect");
+        this.addButtonToMainContainer("Open Fastly Dev Fiddle", this.fastlyVclScript ,"fastlyVclScript");
     }
 }
 
