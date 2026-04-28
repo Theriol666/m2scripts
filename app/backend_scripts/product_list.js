@@ -2,7 +2,7 @@
 // @name         Magento 2 > BE > PL
 // @namespace    M2Scripts
 // @version      2024-10-28
-// @description  Get data from column list!
+// @description  Manage product list
 // @author       rbortolotto
 // @match        *://*/*catalog/product/index*/*
 // @icon         https://www.shareicon.net/download/2016/07/10/119934_magento.ico
@@ -24,7 +24,7 @@ class ProductListM2Scripts extends M2Scripts {
         this.skuColumn = null;
         this.imageCulumn = null;
         this.urlKeyCulumn = null;
-        this.imagePlaceholderValue = 'placeholder';        
+        this.imagePlaceholderValue = 'placeholder';
     }
 
     getColumnByText(text) {
@@ -64,6 +64,11 @@ class ProductListM2Scripts extends M2Scripts {
         return this.urlKeyCulumn;
     }
 
+    getFilterAttributeValue() {
+        const fieldAttribute = prompt("Attribute Code: ", 'color');
+        alert(jQuery("[name=" + fieldAttribute + "]").find(":selected").val());
+    }
+
     getSku() {
         if (document.querySelector(".admin__data-grid-outer-wrap > .admin__data-grid-wrap > table.data-grid") !== null) {
             var skus=[];
@@ -95,6 +100,7 @@ class ProductListM2Scripts extends M2Scripts {
     }
 
     addButtons() {
+        this.addButtonToMainContainer("Get Filter Attribute Value", this.getFilterAttributeValue ,"getFilterAttributeValue");
         this.addButtonToMainContainer("Get SKUs From List", this.getSku ,"getSku");
         this.addButtonToMainContainer("Get SKUs with no Thumb", this.getNoImage ,"getNoImage");
         this.addButtonToMainContainer("Get Url Key", this.getUrlKey ,"getUrlKey");

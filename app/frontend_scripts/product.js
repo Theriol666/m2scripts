@@ -52,6 +52,30 @@ class ProductM2Scripts extends M2Scripts {
         return productUrl;
     }
 
+    plpDuplicatedUrl(event) {
+        const links = document.querySelectorAll(".product-items li a.product-item-link");
+
+        const urlCount = {};
+        const duplicatedUrls = [];
+
+        links.forEach(link => {
+            const url = link.href;
+
+            urlCount[url] = (urlCount[url] || 0) + 1;
+
+            if (urlCount[url] === 2) {
+                duplicatedUrls.push(url);
+            }
+        });
+
+        if (duplicatedUrls.length > 0) {
+            alert(
+                "URL duplicati trovati:\n\n" +
+                duplicatedUrls.map(url => `- ${url}`).join("\n")
+            );
+        }
+    }
+
     gotoProductPage(event) {
         let productUrl = this.getProductUrl(event);
         if (productUrl) {
@@ -63,6 +87,7 @@ class ProductM2Scripts extends M2Scripts {
         this.addButtonToMainContainer("Get Product Url by SKU", this.getProductUrl ,"getProductUrl");
         this.addButtonToMainContainer("Get Product Url by Name", this.getProductUrl ,"getProductUrlName");
         this.addButtonToMainContainer("Go To Product Page", this.gotoProductPage ,"gotoProductPage");
+        this.addButtonToMainContainer("PLP Dupicated Urls", this.plpDuplicatedUrl ,"plpDuplicatedUrl");
     }
 }
 
